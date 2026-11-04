@@ -1,0 +1,34 @@
+name: verify-site
+
+# Publishes nothing. The Pages build runs from the branch directly; this workflow only
+# proves that the published legal documents are actually served, from a network that is
+# not the publisher's. A legal page that 404s is a Play Store Data-safety failure, and
+# the application links to these three URLs from Settings → Legal notices.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check the published pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Request every published URL
+        env:
+          BASE_URL: https://eng-alshikh.github.io/foresight-android
+        run: |
+          status=0
+          for path in "" "index.html" "privacy.html" "terms.html" "delete-account.html" "privacy/" "terms/" "delete-account/" "styles.css"; do
+            code=$(curl --silent --show-error --location --output /dev/null --write-out "%{http_code}" --max-time 30 "$BASE_URL/$path")
+            echo "$code  $BASE_URL/$path"
+            if [ "$code" != "200" ]; then
+              status=1
+            fi
+          done
+          exit $status

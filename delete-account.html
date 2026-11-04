@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account & Data Deletion — Foresight — AI Meeting Notes</title>
+  <meta name="description" content="Account and data deletion instructions and web request portal for Foresight — AI Meeting Notes (com.xenolabs.foresight) complying with Google Play policies.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <a href="index.html" class="brand">
+      <span>Foresight</span>
+      <span class="brand-badge">On-Device AI</span>
+    </a>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms</a>
+      <a href="delete-account.html" class="active">Data Deletion</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="hero">
+    <div class="badges-row">
+      <span class="badge amber">Google Play Policy Compliance</span>
+      <span class="badge green">User Data Sovereignty</span>
+    </div>
+    <h1>Account &amp; Data Deletion</h1>
+    <p>Complete guide and web request portal for deleting your Foresight account, meeting data, and stored models.</p>
+  </div>
+
+  <div class="alert alert-info">
+    <strong>Google Play Data Safety &amp; Deletion Compliance:</strong> In accordance with Google Play's User Data policy and Account Deletion requirements, Foresight provides both an immediate in-app deletion mechanism and this web-based deletion portal for users who have uninstalled the application.
+  </div>
+
+  <section class="card">
+    <h2>1. Understanding Foresight's On-Device Data Storage</h2>
+    <p>
+      Foresight — AI Meeting Notes (<code>com.xenolabs.foresight</code>) is engineered with a strict <strong>100% on-device architecture</strong>. 
+      Unlike cloud-based meeting recorders, Foresight does not maintain centralized servers storing your meeting audio, transcripts, notes, or knowledge documents.
+    </p>
+    <p>
+      All data generated while using the application resides exclusively in encrypted, app-private storage on your Android device. As a result, deleting your data from your device permanently and irreversibly purges your data with zero retention on remote servers.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>2. Immediate In-App Deletion Walkthrough</h2>
+    <p>
+      If you currently have the Foresight app installed on your device, you can instantaneously delete all account associations, meeting transcripts, database records, and downloaded models:
+    </p>
+    <ol>
+      <li>Open the <strong>Foresight — AI Meeting Notes</strong> app on your Android device.</li>
+      <li>Tap the <strong>Settings</strong> icon from the navigation rail or side menu.</li>
+      <li>Scroll down to the <strong>Data &amp; Storage Management</strong> section.</li>
+      <li>Tap the red button labeled <strong>"Delete all user data and models"</strong>.</li>
+      <li>A confirmation modal will appear. Tap <strong>"Delete Everything"</strong> to confirm.</li>
+    </ol>
+    <div class="alert alert-danger" style="margin-top: 16px;">
+      <strong>What happens during in-app deletion:</strong>
+      <ul style="margin-top: 8px; margin-left: 20px;">
+        <li>All 17 app database tables (notes, meeting transcripts, insights, graph edges, contacts, clusters, labels) are completely truncated and dropped.</li>
+        <li>The local RAG vector embeddings database (<code>RagDocumentsDatabase</code>) and token statistics (<code>TokenUsageDatabase</code>) are destroyed.</li>
+        <li>All Google OAuth tokens stored in the hardware-backed <code>AndroidKeyStore</code> are securely wiped.</li>
+        <li>All downloaded on-device AI model binaries (Gemma, LiteRT-LM) and memory cache files are erased from disk.</li>
+        <li>All user preferences are restored to factory defaults and the app restarts to the initial onboarding screen.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>3. Revoking Google Account Permissions</h2>
+    <p>
+      If you linked your Google Account to sync Google Calendar events or index Google Drive attachments, you can revoke Foresight's access at any time directly through Google:
+    </p>
+    <ol>
+      <li>Visit the official <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Third-Party Apps &amp; Services Portal</a>.</li>
+      <li>Select <strong>Foresight — AI Meeting Notes</strong> (or Foresight Notes).</li>
+      <li>Click <strong>"Remove Access"</strong> or <strong>"Delete all connections"</strong>.</li>
+    </ol>
+    <p>
+      This immediately invalidates all OAuth tokens on Google's servers, preventing any further retrieval of calendar or document metadata even if the application remains on your phone.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>4. Web-Based Deletion Request (If App Is Uninstalled)</h2>
+    <p>
+      If you have uninstalled Foresight and want to submit a formal account disassociation request, or if you need assistance verifying that no data remains associated with your Google Account, you can submit a deletion request to our compliance team:
+    </p>
+
+    <div class="feature-box" style="margin-top: 16px;">
+      <h3>Submit a Deletion Request via Email</h3>
+      <p>
+        Send an email from the Google Account address linked to Foresight:
+      </p>
+      <ul>
+        <li><strong>Recipient:</strong> <a href="mailto:privacy@xenolabs.net?subject=Foresight%20Data%20Deletion%20Request">privacy@xenolabs.net</a></li>
+        <li><strong>CC:</strong> <a href="mailto:eng.alshikh@gmail.com">eng.alshikh@gmail.com</a></li>
+        <li><strong>Subject:</strong> <code>Foresight Data Deletion Request</code></li>
+        <li><strong>Body Template:</strong>
+          <pre style="background: var(--bg-page); padding: 12px; border-radius: 6px; margin-top: 8px; font-size: 0.9rem; overflow-x: auto;">
+Please confirm the complete disassociation and deletion of all data, 
+tokens, and diagnostic records associated with my Google account:
+
+Email: [Your Google Account Email]
+App Package: com.xenolabs.foresight
+Reason: Account deletion / Uninstalled app</pre>
+        </li>
+      </ul>
+      <p style="margin-top: 16px;">
+        <a class="btn btn-danger" href="mailto:privacy@xenolabs.net?subject=Foresight%20Data%20Deletion%20Request&amp;body=Please%20confirm%20the%20complete%20disassociation%20and%20deletion%20of%20all%20data%20and%20tokens%20associated%20with%20my%20account:%0A%0AEmail:%20%0AApp:%20Foresight%20%E2%80%94%20AI%20Meeting%20Notes%20(com.xenolabs.foresight)">
+          Launch Pre-Filled Deletion Email
+        </a>
+      </p>
+    </div>
+
+    <h3 style="margin-top: 24px;">Processing Timeline</h3>
+    <p>
+      Because all meeting content is stored strictly on-device, deleting the app from your Android device immediately purges all local data. Email requests regarding token disassociation or Firebase telemetry records will be confirmed within <strong>48 hours</strong>.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>5. Contact Data Privacy Officer</h2>
+    <p>
+      For any questions regarding data deletion, GDPR compliance, or account security:
+    </p>
+    <p>
+      <strong>Xeno Labs</strong><br>
+      Data Protection Office: <a href="mailto:privacy@xenolabs.net">privacy@xenolabs.net</a><br>
+      Lead Engineer: Eng. Alshikh (<a href="mailto:eng.alshikh@gmail.com">eng.alshikh@gmail.com</a>)
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Overview</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="delete-account.html">Account &amp; Data Deletion</a>
+    <a href="https://github.com/eng-alshikh/foresight-android" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <p>&copy; 2026 Xeno Labs • Foresight — AI Meeting Notes • All rights reserved.</p>
+</footer>
+
+</body>
+</html>

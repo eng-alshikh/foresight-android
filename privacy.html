@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Foresight — AI Meeting Notes</title>
+  <meta name="description" content="Privacy Policy for Foresight — AI Meeting Notes (com.xenolabs.foresight). 100% on-device AI meeting assistant with zero audio or transcript uploads.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <a href="index.html" class="brand">
+      <span>Foresight</span>
+      <span class="brand-badge">On-Device AI</span>
+    </a>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="privacy.html" class="active">Privacy Policy</a>
+      <a href="terms.html">Terms</a>
+      <a href="delete-account.html">Data Deletion</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="hero">
+    <div class="badges-row">
+      <span class="badge green">✓ 100% On-Device AI</span>
+      <span class="badge">Zero Cloud Audio Uploads</span>
+      <span class="badge amber">Target SDK 36 (Android 16)</span>
+    </div>
+    <h1>Privacy Policy</h1>
+    <p>Effective Date: October 21, 2026 • Version 1.0</p>
+  </div>
+
+  <div class="alert alert-info">
+    <strong>Privacy-First Guarantee:</strong> Foresight — AI Meeting Notes processes your meeting audio, live transcripts, and personal notes <strong>100% locally on your device</strong>. Raw audio recordings and transcripts are never uploaded, streamed, or sold to external servers or third-party AI providers.
+  </div>
+
+  <section class="card">
+    <h2>1. Introduction & Overview</h2>
+    <p>
+      This Privacy Policy applies to the mobile application <strong>"Foresight — AI Meeting Notes"</strong> (Application ID: <code>com.xenolabs.foresight</code>), developed and published by <strong>Xeno Labs</strong> ("we", "us", or "our").
+    </p>
+    <p>
+      We designed Foresight with privacy as the foundational architectural requirement. Traditional meeting assistants stream sensitive conference audio and conversational transcripts to centralized cloud servers for cloud processing. Foresight replaces this paradigm with edge artificial intelligence: cutting-edge language and speech models running directly on your Android device's local neural processing unit (NPU), GPU, and CPU.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>2. Data We Process and How It Is Handled</h2>
+
+    <h3>A. Audio Capture & Live Transcripts (100% On-Device)</h3>
+    <p>
+      When you activate a meeting session, Foresight records speech from your device's microphone and optional internal audio (via Android's <code>MediaProjection</code> system API).
+    </p>
+    <ul>
+      <li><strong>Ephemeral Processing:</strong> Audio buffers are streamed directly into on-device speech models (Gemma / LiteRT-LM). Raw audio buffers are processed in memory and released.</li>
+      <li><strong>Local Storage:</strong> Transcripts and generated meeting insights (bullet summaries, action items, executive briefs) are stored exclusively in an app-private, encrypted SQLite database on your device.</li>
+      <li><strong>Zero Server Uploads:</strong> Under no circumstances is audio or transcript text transmitted over the internet to our servers or any cloud AI provider.</li>
+    </ul>
+
+    <h3>B. User Notes & Knowledge Documents</h3>
+    <p>
+      Any notes you create, shorthand scribbles, or documents imported into Foresight's Knowledge module are parsed and vectorized into local embeddings using an on-device embedding model. All chunked text, semantic vectors, and entity graph relationships remain stored locally on your physical device.
+    </p>
+
+    <h3>C. Google Account & Workspace Integrations (Optional)</h3>
+    <p>
+      If you choose to connect your Google Account via Google Sign-In, Foresight requests specific read-only OAuth scopes:
+    </p>
+    <ul>
+      <li><code>userinfo.email</code> &amp; <code>userinfo.profile</code>: Display your account identity within the in-app account switcher.</li>
+      <li><code>calendar.events.readonly</code>: Retrieve upcoming calendar events to generate your on-device daily briefing.</li>
+      <li><code>drive.readonly</code>, <code>documents.readonly</code>, <code>presentations.readonly</code>: Allow you to import user-selected meeting attachments and slide decks for local indexing.</li>
+    </ul>
+    <p>
+      <strong>Storage of Credentials:</strong> OAuth tokens are stored in hardware-backed secure storage using the <code>AndroidKeyStore</code> system with AES-256-GCM encryption. Credentials are used solely for direct communication between your device and Google's official APIs.
+    </p>
+
+    <h3>D. Diagnostic Telemetry & Crash Reporting (Opt-Out)</h3>
+    <p>
+      Foresight uses Firebase Crashlytics for crash detection and release-health monitoring to ensure application stability across Android device tiers:
+    </p>
+    <ul>
+      <li><strong>Strict PII Sanitization:</strong> All crash reports are programmatically scrubbed prior to dispatch. Transcripts, audio buffers, notes, email addresses, and auth tokens are stripped. Only anonymized stack traces and hardware tier indicators (e.g., RAM tier, thermal level) are collected.</li>
+      <li><strong>User Opt-Out:</strong> You can completely disable Crashlytics telemetry at any time via <em>Settings → Privacy &amp; Processing → Crash &amp; Release-Health Reporting</em>.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>3. Android System Permissions & Justifications</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Permission</th>
+          <th>Type</th>
+          <th>Specific Purpose & Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>RECORD_AUDIO</code></td>
+          <td>Sensitive</td>
+          <td>Required to capture spoken meeting dialogue via the device microphone for local real-time transcription.</td>
+        </tr>
+        <tr>
+          <td><code>FOREGROUND_SERVICE_MICROPHONE</code></td>
+          <td>Sensitive</td>
+          <td>Allows the local transcription service to continue processing audio continuously when the screen is locked or the app is minimized.</td>
+        </tr>
+        <tr>
+          <td><code>FOREGROUND_SERVICE_MEDIA_PROJECTION</code></td>
+          <td>Sensitive</td>
+          <td>Enables capturing remote meeting attendee speech from conferencing apps during screen-sharing sessions, with explicit user consent per session.</td>
+        </tr>
+        <tr>
+          <td><code>SYSTEM_ALERT_WINDOW</code></td>
+          <td>Special</td>
+          <td>Displays the optional floating Heads-Up Display (HUD) overlay showing live transcript lines and instant answers over active meeting apps.</td>
+        </tr>
+        <tr>
+          <td><code>READ_CALENDAR</code></td>
+          <td>Sensitive</td>
+          <td>Permits reading meeting schedules to associate notes with calendar appointments and generate daily briefs.</td>
+        </tr>
+        <tr>
+          <td><code>POST_NOTIFICATIONS</code></td>
+          <td>Standard</td>
+          <td>Displays mandatory foreground service controls (pause, stop recording) and meeting alerts.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>4. User Rights, Data Retention & Deletion</h2>
+    <p>
+      Because Foresight does not host your transcripts or notes on remote servers, you maintain complete data sovereignty:
+    </p>
+    <ul>
+      <li><strong>Instant In-App Deletion:</strong> You can wipe all data at any time via <em>Settings → Data &amp; Storage Management → "Delete all user data and models"</em>. This immediately truncates all 17 database tables, purges vector embeddings, deletes downloaded AI models, wipes tokens from the AndroidKeyStore, and resets the app.</li>
+      <li><strong>Google Account Revocation:</strong> You can revoke Foresight's OAuth access at any time via your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Account Permissions Portal</a>.</li>
+      <li><strong>Web Deletion Portal:</strong> If you uninstalled the application and wish to confirm data disassociation or request assistance, visit our <a href="delete-account.html">Account &amp; Data Deletion Request Page</a>.</li>
+      <li><strong>GDPR &amp; CCPA Rights:</strong> European Union and California residents have rights to access, rectification, erasure, and portability of their data. Because your data is stored locally on your device, performing the in-app data deletion satisfies your right to erasure immediately without third-party delay.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>5. Generative AI Safety & Content Disclaimers</h2>
+    <p>
+      Meeting summaries, suggested action items, and conversational responses are generated autonomously by on-device artificial intelligence models:
+    </p>
+    <ul>
+      <li><strong>AI Accuracy:</strong> AI-generated outputs may occasionally produce inaccurate, incomplete, or hallucinated information. Always review critical meeting summaries and action items.</li>
+      <li><strong>Recording Consent:</strong> Users are solely responsible for ensuring that all participants in a meeting have provided legal consent to being recorded, in compliance with applicable federal, state, and local wiretapping laws.</li>
+      <li><strong>In-App Reporting:</strong> You can flag any inaccurate, harmful, or improper AI generation directly in-app using the feedback buttons on notes and chat messages.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>6. Children's Privacy</h2>
+    <p>
+      Foresight — AI Meeting Notes is intended strictly for professional and educational use by individuals aged 18 and older. We do not knowingly collect or solicit data from children under the age of 13.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>7. Contact Information</h2>
+    <p>
+      If you have questions, concerns, or privacy inquiries regarding this Privacy Policy, please contact our data protection team:
+    </p>
+    <p>
+      <strong>Xeno Labs</strong><br>
+      Privacy &amp; Compliance Team: <a href="mailto:privacy@xenolabs.net">privacy@xenolabs.net</a><br>
+      Lead Developer: Eng. Alshikh (<a href="mailto:eng.alshikh@gmail.com">eng.alshikh@gmail.com</a>)<br>
+      Repository: <a href="https://github.com/eng-alshikh/foresight-android" target="_blank" rel="noopener">github.com/eng-alshikh/foresight-android</a>
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Overview</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="delete-account.html">Account &amp; Data Deletion</a>
+    <a href="https://github.com/eng-alshikh/foresight-android" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <p>&copy; 2026 Xeno Labs • Foresight — AI Meeting Notes • All rights reserved.</p>
+</footer>
+
+</body>
+</html>
